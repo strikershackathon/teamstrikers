@@ -1,3 +1,4 @@
+package Strikers;
 import robocode.AlphaBot;
 import java.awt.*;
 import robocode.*;
