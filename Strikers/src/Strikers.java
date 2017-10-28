@@ -23,11 +23,13 @@ public class Strikers extends AlphaBot{
 	 */
 	public void run() {
 		// Set colors
-		setBodyColor(Color.black);
-		setGunColor(Color.black);
-		setRadarColor(Color.orange);
-		setBulletColor(Color.cyan);
-		setScanColor(Color.cyan);
+		Color purple = new Color(135,62,141);
+		Color white = new Color(255,255,255);
+		setBodyColor(purple);
+		setGunColor(white);
+		setRadarColor(purple);
+		setBulletColor(white);
+		setScanColor(purple);
 
 		// Initialize moveAmount to the maximum possible for this battlefield.
 		moveAmount = Math.max(getBattleFieldWidth(), getBattleFieldHeight());
