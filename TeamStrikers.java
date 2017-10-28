@@ -1,5 +1,3 @@
-
-import robocode.AlphaBot;
 import java.awt.*;
 import robocode.*;
 
@@ -13,10 +11,11 @@ import robocode.*;
  *
  * @author Choxmi
  */
-public class TeamStrikers extends AlphaBot{
+public class TeamStrikers extends BravoBot{
     
     boolean peek; 
-	double moveAmount; 
+    double moveAmount; 
+    boolean wallhit = false;
 
 	public void run() {
 		
@@ -34,14 +33,16 @@ public class TeamStrikers extends AlphaBot{
 		turnLeft(getHeading() % 90);
 		ahead(moveAmount);
 		peek = true;
-		turnGunRight(90);
+                
 		turnRight(90);
+               
+                
 
 		while (true) {
 			peek = true;
 			ahead(moveAmount);
 			peek = false;
-			turnRight(90);
+			turnRight(35);
 		}
 	}
 	
@@ -55,7 +56,7 @@ public class TeamStrikers extends AlphaBot{
 	}
 
 	public void onScannedRobot(ScannedRobotEvent e) {
-            double distance = e.getDistance(); //get the distance of the scanned robot
+            double distance = e.getDistance();
             if(distance > 800) //this conditions adjust the fire force according the distance of the scanned robot.
 	        fire(1);
 	    else if(distance > 600 && distance <= 800)
@@ -66,7 +67,7 @@ public class TeamStrikers extends AlphaBot{
 	        fire(4);
 	    else if(distance < 200)
 	        fire(5);
-		
+            
 		if (peek) {
 			scan();
 		}
@@ -75,18 +76,17 @@ public class TeamStrikers extends AlphaBot{
     @Override
     public void onHitByBullet(HitByBulletEvent event) {
         super.onHitByBullet(event);
-        System.out.println("Bullet Heading : "+(getHeading()-event.getBearingRadians()));
-        
-        double angle = (getHeading()-event.getBearingRadians());
-        
-        if(angle>90){
-            turnRight(120);
-			ahead(100);
-            System.out.println("Going Ahead");
-        }else{
-			turnRight(120);
-			ahead(100);
-            System.out.println("Going Back");
-        }
+            turnRight(90);
+            ahead(75);
+            
+            if(wallhit){
+                back(75);
+                wallhit = false;
+            }
+    }
+
+    @Override
+    public void onHitWall(HitWallEvent event) {
+        wallhit = true;
     }
 }
