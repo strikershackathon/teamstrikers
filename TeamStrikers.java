@@ -54,7 +54,7 @@ public class Strikers extends AlphaBot{
 	}
 
 	public void onScannedRobot(ScannedRobotEvent e) {
-		fire(2);
+		fire(4);
 		if (peek) {
 			scan();
 		}
