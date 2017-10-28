@@ -1,3 +1,4 @@
+package Strikers;
 import robocode.AlphaBot;
 import java.awt.*;
 import robocode.*;
@@ -10,9 +11,9 @@ import robocode.*;
 
 /**
  *
- * @author RAMEE
+ * @author Choxmi
  */
-public class TeamStrikers extends AlphaBot{
+public class Strikers extends AlphaBot{
     
     boolean peek; 
 	double moveAmount; 
@@ -54,9 +55,38 @@ public class TeamStrikers extends AlphaBot{
 	}
 
 	public void onScannedRobot(ScannedRobotEvent e) {
-		fire(2);
+            double distance = e.getDistance(); //get the distance of the scanned robot
+            if(distance > 800) //this conditions adjust the fire force according the distance of the scanned robot.
+	        fire(1);
+	    else if(distance > 600 && distance <= 800)
+	        fire(2);
+	    else if(distance > 400 && distance <= 600)
+	        fire(3);
+	    else if(distance > 200 && distance <= 400)
+	        fire(4);
+	    else if(distance < 200)
+	        fire(5);
+		
 		if (peek) {
 			scan();
 		}
 	}
+
+    @Override
+    public void onHitByBullet(HitByBulletEvent event) {
+        super.onHitByBullet(event);
+        System.out.println("Bullet Heading : "+(getHeading()-event.getBearingRadians()));
+        
+        double angle = (getHeading()-event.getBearingRadians());
+        
+        if(angle>90){
+            turnRight(120);
+			ahead(100);
+            System.out.println("Going Ahead");
+        }else{
+			turnRight(120);
+			ahead(100);
+            System.out.println("Going Back");
+        }
+    }
 }
