@@ -1,4 +1,4 @@
-package Strikers;
+
 import robocode.AlphaBot;
 import java.awt.*;
 import robocode.*;
@@ -13,7 +13,7 @@ import robocode.*;
  *
  * @author Choxmi
  */
-public class Strikers extends AlphaBot{
+public class TeamStrikers extends AlphaBot{
     
     boolean peek; 
 	double moveAmount; 
