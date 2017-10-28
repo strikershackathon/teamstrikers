@@ -1,5 +1,6 @@
 
 import robocode.AlphaBot;
+import java.awt.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
