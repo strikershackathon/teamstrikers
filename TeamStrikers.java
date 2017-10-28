@@ -12,7 +12,7 @@ import robocode.*;
  *
  * @author RAMEE
  */
-public class Strikers extends AlphaBot{
+public class TeamStrikers extends AlphaBot{
     
     boolean peek; 
 	double moveAmount; 
